@@ -31,13 +31,12 @@ KEYCLOAK_SERVICE = KeycloakService()
 TRACER = Tracer.get_instance()
 
 
-@cors_preflight('POST,OPTIONS')
+
 @API.route('', methods=['POST', 'OPTIONS'])
 class Token(Resource):
     """Get token from Keycloak by username and password, or refresh token, return token."""
 
     @staticmethod
-    @cors.crossdomain(origin='*')
     @TRACER.trace()
     def post():
         """Get token or refresh token, return token."""
